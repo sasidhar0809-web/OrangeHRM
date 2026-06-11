@@ -12,8 +12,8 @@ async function globalSetup() {
   console.log('Running ENV URL:', url);
 
   // Navigate
-  await page.goto(url);
-  //await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  //await page.goto(url);
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
 
   if (url.includes('orangehrmlive')) {
