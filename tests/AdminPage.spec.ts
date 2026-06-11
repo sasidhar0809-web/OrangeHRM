@@ -6,10 +6,10 @@ import { faker } from '@faker-js/faker';
 test('Create New Admin User', async ({ page }) => {
   const admin = new AdminPage(page);
     await page.goto('/web/index.php/dashboard/index');
-
+    const username = faker.internet.username();
   const data = {
     employeeName: 'Ad',
-    username: faker.internet.username(),
+    username: username,
     password: 'Password123'
   };
 
@@ -20,6 +20,8 @@ test('Create New Admin User', async ({ page }) => {
   await admin.fillAdminForm(data);
   await admin.saveUser();
   await admin.verifySuccess();
+  await admin.goToAdmin();
+  await admin.searchUser(username);
 });
 
 
@@ -98,6 +100,8 @@ test('Delete Admin User', async ({ page }) => {
   await admin.goToAdmin();
   await admin.searchUser(username);
   await admin.deleteUser();
+  await admin.resetSearch();
+  await admin.negativeSearchUser(username);
 });
 
 
