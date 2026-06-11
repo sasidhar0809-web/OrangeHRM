@@ -24,7 +24,11 @@ testDir: './tests',
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   timeout: 60000,
-  reporter: [['html', { open: 'never' }]],
+
+  reporter: [
+    ['html', { outputFolder: 'playwright-report', open: 'never' }]
+  ],
+
 
   globalSetup: './global_setup.ts',
 
